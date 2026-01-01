@@ -17,5 +17,10 @@ Minimal FastAPI app that extracts in-text citations and reference list entries, 
 - Each contains 6+ in-text citations, one missing reference (`Taylor, 2022`), and one unused reference entry (`Unused, 2016`).
 - You can POST directly: `curl -F "file=@sample_docs/sample_apa.txt" http://127.0.0.1:8000/check`.
 
+## Streamlit (for Streamlit Cloud)
+- Entry point: `streamlit_app.py`
+- Local run: `streamlit run streamlit_app.py`
+- Streamlit Cloud will install from `requirements.txt`; ensure the repo includes `sample_docs/` if you want the sample file in the UI.
+
 ## Tests
 - Run `py -3.12 -m pytest`.
