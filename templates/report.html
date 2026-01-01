@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reference Checker – Report</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="panel">
+      <div class="header">
+        <div>
+          <p class="eyebrow">Results</p>
+          <h1>Reference report</h1>
+          <p>Summary of in-text citations vs. reference list entries.</p>
+        </div>
+        <a class="ghost" href="/report.json" download>Download JSON</a>
+      </div>
+      <div class="stats-grid">
+        <div class="stat">
+          <p class="label">Total citations</p>
+          <p class="value">{{ report.total_citations }}</p>
+        </div>
+        <div class="stat">
+          <p class="label">Total references</p>
+          <p class="value">{{ report.total_references }}</p>
+        </div>
+        <div class="stat">
+          <p class="label">Missing in reference list</p>
+          <p class="value accent">{{ missing_count }}</p>
+        </div>
+        <div class="stat">
+          <p class="label">Unused in text</p>
+          <p class="value accent">{{ unused_count }}</p>
+        </div>
+      </div>
+
+      <div class="lists">
+        <div class="list-block">
+          <h2>Missing in reference list</h2>
+          {% if report.missing_in_references %}
+            <ul>
+              {% for item in report.missing_in_references %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="empty">All citations have matching references.</p>
+          {% endif %}
+        </div>
+        <div class="list-block">
+          <h2>Unused in text</h2>
+          {% if report.unused_in_text %}
+            <ul>
+              {% for item in report.unused_in_text %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="empty">No stray references detected.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="footer">
+        <a class="ghost" href="/">Run another file</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
